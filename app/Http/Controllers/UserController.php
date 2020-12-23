@@ -26,4 +26,18 @@ class UserController extends Controller
             return redirect('/');
         }
     }
+
+    public function register(Request $req)
+    {
+        if ($req->password == $req->password_check) {
+            $user = new User;
+            $user->name = $req->name;
+            $user->email = $req->email;
+            $user->password = Hash::make($req->password);
+            $user->save();
+            return redirect('/login');
+        } else {
+            return redirect('/register');
+        }
+    }
 }

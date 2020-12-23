@@ -17,8 +17,12 @@
             <input type="hidden" name="product_id" value="{{$detail['id']}}">
             <button class="btn btn-primary" type="submit">Add to Cart</button>
         </form>
-        <br><br>
-        <button class="btn btn-success">Buy Now</button>
+        <br>
+        <form action="/add_to_cart2" method="POST">
+        @csrf
+            <input type="hidden" name="product_id" value="{{$detail['id']}}">
+            <button class="btn btn-success">Buy Now</button>
+        </form>
         <br><br>
         </div>
     </div>

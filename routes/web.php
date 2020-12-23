@@ -24,8 +24,22 @@ Route::get('/logout', function () {
     return view('login');
 });
 
+Route::view('/register', 'register');
+Route::post('/register', [UserController::class, 'register']);
+
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/', [ProductController::class, 'index']);
 Route::get('detail/{id}', [ProductController::class, 'detail']);
 Route::get('search', [ProductController::class, 'search']);
 Route::post('add_to_cart', [ProductController::class, 'addToCart']);
+Route::post('/add_to_cart2', [ProductController::class, 'addToCart2']);
+Route::get('cartlist', [ProductController::class, 'cartList']);
+Route::get('removecart/{id}', [ProductController::class, 'removeCart']);
+Route::get('/ordernow', [ProductController::class, 'orderNow']);
+Route::post('/orderplace', [ProductController::class, 'orderPlace']);
+Route::get('/myorders', [ProductController::class, 'myOrders']);
+
+// ECPay 回傳到這裡，再做付款狀態更新
+Route::post('/callback', [ProductController::class, 'callback']);
+// 處理返回商店的連結
+Route::get('/success', [ProductController::class, 'redirectFromECpay']);
